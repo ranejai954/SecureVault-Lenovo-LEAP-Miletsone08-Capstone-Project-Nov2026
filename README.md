@@ -74,4 +74,4 @@ If you want to run this project on your own machine:
 
 ---
 
-*Developed by **Jai Bhushan Rane** as part of the Lenovo LEAP Cybersecurity Internship (Nov 2026).*
+*Developed by **Jai Bhushan Rane** as part of the Lenovo LEAP Cybersecurity Internship Prerequisite (Nov 2026).*
