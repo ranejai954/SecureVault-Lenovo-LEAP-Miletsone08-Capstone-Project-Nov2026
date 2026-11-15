@@ -1,4 +1,4 @@
-# 🔒 SecureVault – AES-256 File Encryption Tool<img width="1415" height="326" alt="image" src="https://github.com/user-attachments/assets/e4e2327d-3d38-4fe9-ad71-dca5e906cec1" />
+# 🔒 SecureVault – AES-256 File Encryption Tool
 
 > **Zero-Knowledge, Client-Side File Encryption Tool built with Next.js and the Web Crypto API.**
 
@@ -7,7 +7,7 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
-🌐 **Live Demo:** [https://securevault-three-sigma.vercel.app/](https://securevault-three-sigma.vercel.app/)
+🌐 **Live Demo:** [https://securevault-three-sigma.vercel.app/](https://securevault-lenovoleap-milestone08-capstone-project.vercel.app/)
 
 ---
 
