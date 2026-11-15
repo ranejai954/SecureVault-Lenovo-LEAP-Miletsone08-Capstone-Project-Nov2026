@@ -7,6 +7,10 @@ export default function Home() {
   const [status, setStatus] = useState<{ msg: string; error: boolean } | null>(null);
   const [isEncrypting, setIsEncrypting] = useState(false);
   const [isDecrypting, setIsDecrypting] = useState(false);
+  
+  // New states to track selected file names
+  const [encryptFileName, setEncryptFileName] = useState<string>("");
+  const [decryptFileName, setDecryptFileName] = useState<string>("");
 
   const getKeyFromPassword = async (password: string, salt: Uint8Array) => {
     const enc = new TextEncoder();
@@ -67,6 +71,7 @@ export default function Home() {
       URL.revokeObjectURL(url);
 
       setStatus({ msg: "File encrypted successfully! The .vault file has been downloaded.", error: false });
+      setEncryptFileName(""); // Reset UI after success
     } catch (err) {
       setStatus({ msg: "Encryption failed.", error: true });
     } finally {
@@ -114,6 +119,7 @@ export default function Home() {
       URL.revokeObjectURL(url);
 
       setStatus({ msg: "File decrypted successfully! Check your downloads.", error: false });
+      setDecryptFileName(""); // Reset UI after success
     } catch (err) {
       setStatus({ msg: "Decryption failed. Incorrect password or corrupted file.", error: true });
     } finally {
@@ -143,11 +149,24 @@ export default function Home() {
               <Lock className="text-blue-400" /> Encrypt File
             </h2>
             <div className="space-y-5">
+              
+              {/* UPDATED ENCRYPT DROPZONE */}
               <div className="relative border-2 border-dashed border-slate-700 hover:border-blue-500 rounded-xl p-6 text-center transition-colors bg-slate-950/50 cursor-pointer">
-                <input type="file" name="file" required className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-                <FileUp className="mx-auto text-slate-500 mb-2" size={32} />
-                <p className="text-sm text-slate-400">Drag & drop or <span className="text-blue-400 font-semibold">browse</span></p>
+                <input 
+                  type="file" 
+                  name="file" 
+                  required 
+                  onChange={(e) => setEncryptFileName(e.target.files?.[0]?.name || "")}
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" 
+                />
+                <FileUp className={`mx-auto mb-2 ${encryptFileName ? 'text-blue-400' : 'text-slate-500'}`} size={32} />
+                {encryptFileName ? (
+                  <p className="text-sm text-blue-400 font-semibold break-all px-4">{encryptFileName}</p>
+                ) : (
+                  <p className="text-sm text-slate-400">Drag & drop or <span className="text-blue-400 font-semibold">browse</span></p>
+                )}
               </div>
+
               <div className="relative">
                 <Key className="absolute left-4 top-3.5 text-slate-500" size={20} />
                 <input type="password" name="password" placeholder="Enter strong password" required className="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-white transition-all" />
@@ -164,11 +183,25 @@ export default function Home() {
               <Unlock className="text-green-400" /> Decrypt File
             </h2>
             <div className="space-y-5">
+              
+              {/* UPDATED DECRYPT DROPZONE */}
               <div className="relative border-2 border-dashed border-slate-700 hover:border-green-500 rounded-xl p-6 text-center transition-colors bg-slate-950/50 cursor-pointer">
-                <input type="file" name="file" accept=".vault" required className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-                <FileUp className="mx-auto text-slate-500 mb-2" size={32} />
-                <p className="text-sm text-slate-400">Upload a <span className="text-green-400 font-semibold">.vault</span> file</p>
+                <input 
+                  type="file" 
+                  name="file" 
+                  accept=".vault" 
+                  required 
+                  onChange={(e) => setDecryptFileName(e.target.files?.[0]?.name || "")}
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" 
+                />
+                <FileUp className={`mx-auto mb-2 ${decryptFileName ? 'text-green-400' : 'text-slate-500'}`} size={32} />
+                {decryptFileName ? (
+                  <p className="text-sm text-green-400 font-semibold break-all px-4">{decryptFileName}</p>
+                ) : (
+                  <p className="text-sm text-slate-400">Upload a <span className="text-green-400 font-semibold">.vault</span> file</p>
+                )}
               </div>
+
               <div className="relative">
                 <Key className="absolute left-4 top-3.5 text-slate-500" size={20} />
                 <input type="password" name="password" placeholder="Enter decryption password" required className="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-green-500/50 text-white transition-all" />
