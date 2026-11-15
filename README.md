@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🔒 SecureVault – AES-256 File Encryption Tool<img width="1415" height="326" alt="image" src="https://github.com/user-attachments/assets/e4e2327d-3d38-4fe9-ad71-dca5e906cec1" />
 
-## Getting Started
+> **Zero-Knowledge, Client-Side File Encryption Tool built with Next.js and the Web Crypto API.**
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🌐 **Live Demo:** [https://securevault-three-sigma.vercel.app/](https://securevault-three-sigma.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📖 Overview
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+SecureVault is a cybersecurity Capstone Project developed for the **Lenovo LEAP NextGen Scholar Program**. It solves the critical problem of **Data Protection** by providing a seamless way to encrypt sensitive files before they are stored or shared.
 
-## Learn More
+Unlike traditional cloud encryption tools, SecureVault operates on a **Zero-Knowledge architecture**. This means your files and passwords **never leave your computer**. All encryption and decryption happen locally in your browser using the native JavaScript Web Crypto API.
 
-To learn more about Next.js, take a look at the following resources:
+## ✨ Key Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* **🔐 AES-256-GCM Encryption:** Utilizes military-grade symmetric encryption for both confidentiality and integrity.
+* **🛡️ Zero-Knowledge Architecture:** The server (Vercel) only serves the static UI. It never sees, transmits, or stores your files or passwords.
+* **🔑 PBKDF2 Key Derivation:** Derives a strong cryptographic key from your password using 100,000 iterations of SHA-256, protecting against brute-force and rainbow table attacks.
+* **📦 Custom `.vault` Format:** The encrypted output file bundles the Salt, Initialization Vector (IV), and Encrypted Data into a single secure package.
+* **🎨 Modern UI/UX:** Built with Tailwind CSS featuring a responsive, dark-themed glassmorphism design with drag-and-drop support.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Tech Stack
 
-## Deploy on Vercel
+* **Framework:** Next.js 15 (App Router)
+* **Language:** TypeScript
+* **Styling:** Tailwind CSS
+* **Cryptography:** Web Crypto API (Native Browser API)
+* **Icons:** Lucide React
+* **Deployment:** Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚀 How It Works
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Encrypt:** Upload a file, enter a strong password, and click *Encrypt & Download*. The app generates a random 16-byte Salt and 12-byte IV, derives a key from your password, and encrypts the file.
+2. **Decrypt:** Upload the `.vault` file, enter the same password, and click *Decrypt & Download*. The app extracts the Salt and IV from the file header, re-derives the key, and restores your original file.
+
+## 💻 Run Locally
+
+If you want to run this project on your own machine:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/ranejai954/SecureVault-Lenovo-LEAP-Miletsone08-Capstone-Project-Nov2026.git
+   ```
+
+2. **Navigate to the project directory:**
+   ```bash
+   cd SecureVault-Lenovo-LEAP-Miletsone08-Capstone-Project-Nov2026
+   ```
+
+3. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+4. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+5. Open `http://localhost:3000` in your browser.
+
+## 🔮 Future Scope
+
+* **Asymmetric Encryption (RSA):** Implement public/private key pairs to allow secure file sharing without sharing a password.
+* **Cloud Integration:** Direct integration with Azure Blob Storage or AWS S3 to encrypt files before they are uploaded to the cloud.
+* **Bulk Processing:** Support for multiple files and folder zipping.
+* **Password Strength Meter:** Real-time visual feedback on password entropy.
+
+---
+
+*Developed by **Jai Bhushan Rane** as part of the Lenovo LEAP Cybersecurity Internship (Nov 2026).*
